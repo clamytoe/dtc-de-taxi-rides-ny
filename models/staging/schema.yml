@@ -200,7 +200,7 @@ models:
         license number and the pick-up date, time, and taxi zone location ID (shape file below). 
         These records are generated from the FHV Trip Record submissions made by bases. 
       columns:
-          - name: dispathing_base_num
+          - name: dispatching_base_num
             description: The TLC Base License Number of the base that dispatched the trip
           - name: pickup_datetime 
             description: The date and time of the trip pick-up
