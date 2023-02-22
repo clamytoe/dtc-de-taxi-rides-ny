@@ -9,7 +9,7 @@ with tripdata as
 )
 select
     -- identifiers
-    dispatching_base_num,
+    {{ dbt_utils.surrogate_key(['dispatching_base_num', 'pickup_datetime']) }} as tripid,
     cast(PUlocationID as integer) as pickup_locationid,
     cast(DOlocationID as integer) as dropoff_locationid,
     
