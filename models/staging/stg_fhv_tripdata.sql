@@ -18,8 +18,8 @@ select
     cast(dropOff_datetime as timestamp) as dropoff_datetime,
     
     -- trip info
-    SR_flag,
-    Affiliated_base_number
+    sr_flag,
+    affiliated_base_number
 
 -- from {{ source('staging', 'fhv_tripdata') }}
 from tripdata
