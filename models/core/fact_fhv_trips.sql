@@ -1,7 +1,8 @@
 {{ config(materialized='table') }}
 
 with fhv_data as (
-    select *
+    select *,
+        'Fhv' as service_type
     from {{ ref('stg_fhv_tripdata') }}
 ), 
 
@@ -11,7 +12,7 @@ dim_zones as (
 )
 
 select 
-    fhv_data.dispatching_base_num,
+    fhv_data.tripid,
     fhv_data.pickup_locationid,
     pickup_zone.borough as pickup_borough, 
     pickup_zone.zone as pickup_zone, 
