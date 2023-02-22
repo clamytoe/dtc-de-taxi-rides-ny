@@ -9,20 +9,21 @@ with tripdata as
 )
 select
     -- identifiers
-    {{ dbt_utils.surrogate_key(['dispatching_base_num', 'pickup_datetime']) }} as tripid,
-    affiliated_base_number,
-    cast(pulocationid as integer) as pickup_locationid,
-    cast(dolocationid as integer) as dropoff_locationid,
+    dispatching_base_num,
+    cast(PUlocationID as integer) as pickup_locationid,
+    cast(DOlocationID as integer) as dropoff_locationid,
     
     -- timestamps
     cast(pickup_datetime as timestamp) as pickup_datetime,
     cast(dropOff_datetime as timestamp) as dropoff_datetime,
     
     -- trip info
-    sr_flag
+    SR_flag,
+    Affiliated_base_number
+
+-- from {{ source('staging', 'fhv_tripdata') }}
 from tripdata
 where rn = 1
-
 
 -- dbt build --m <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
