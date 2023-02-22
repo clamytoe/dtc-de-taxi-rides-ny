@@ -8,6 +8,7 @@ sources:
     tables:
       - name: green_tripdata
       - name: yellow_tripdata
+      - name: fhv_tripdata
 
 models:
     - name: stg_green_tripdata
@@ -192,3 +193,26 @@ models:
             description: Total amount of all tolls paid in trip.
           - name: Total_amount 
             description: The total amount charged to passengers. Does not include cash tips.
+
+    - name: stg_fhv_tripdata
+      description: >
+        For-Hire Vehicle (“FHV”) trip records include fields capturing the dispatching base 
+        license number and the pick-up date, time, and taxi zone location ID (shape file below). 
+        These records are generated from the FHV Trip Record submissions made by bases. 
+      columns:
+          - name: dispathing_base_num
+            description: The TLC Base License Number of the base that dispatched the trip
+          - name: pickup_datetime 
+            description: The date and time of the trip pick-up
+          - name: dropOff_datetime 
+            description: The date and time of the trip dropoff
+          - name: PUlocationID
+            description: TLC Taxi Zone in which the trip began
+          - name: DOlocationID 
+            description: TLC Taxi Zone in which the trip ended
+          - name: SR_Flag 
+            description: >
+                Indicates if the trip was a part of a shared ride chain offered by a
+                High Volume FHV company (e.g. Uber Pool, Lyft Line).
+                  1=Shared trip
+                  null=Non-shared rides
