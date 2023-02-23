@@ -4,6 +4,8 @@ with fhv_data as (
     select *,
         'Fhv' as service_type
     from {{ ref('stg_fhv_tripdata') }}
+    where pickup_locationid is not null
+    AND dropoff_locationid is not null
 ), 
 
 dim_zones as (
